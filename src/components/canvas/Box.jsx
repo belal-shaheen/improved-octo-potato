@@ -32,8 +32,8 @@ const BoxComponent = ({ route }) => {
         <pointLight position={[10, 10, 5]} />
         <pointLight position={[-10, -10, -5]} />
         <Suspense fallback={null}>
-          {/* <Model position={[-1, 0, 3]} scale={[0.4, 0.4, 0.4]} rotation={[0.1,0.1,0]} /> */}
-          <Mouse position={[4, -1, 2]} scale={[0.0045, 0.0045, 0.0045]} />
+          <Model position={[-1, 0, 3]} scale={[0.4, 0.4, 0.4]} rotation={[0.1,0.1,0]} />
+          {/* <Mouse position={[4, -1, 2]} scale={[0.0045, 0.0045, 0.0045]} /> */}
         </Suspense>
       </>
     </A11y>

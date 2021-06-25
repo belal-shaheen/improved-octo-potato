@@ -3,7 +3,6 @@ import { A11y } from '@react-three/a11y'
 import { Html, Loader, PerspectiveCamera, Sky, PointerLockControls} from '@react-three/drei'
 import { useResource } from '@react-three/fiber'
 import React, { Suspense, useRef, useState, useEffect } from 'react'
-import { Physics, useSphere, useBox, usePlane } from 'use-cannon'
 import { useThree, useLoader,useFrame } from '@react-three/fiber'
 import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader'
 import Model from './Scene'
@@ -82,7 +81,7 @@ const BoxComponent = ({ route }) => {
         <EffectComposer>
           <Vignette eskil={false} offset={0.01} darkness={0.9} />
         </EffectComposer>
-        <PointerLockControls camera={camera}  makeDefault />
+        {/* <PointerLockControls camera={camera}  makeDefault /> */}
 
         <ambientLight intensity={0.3} />
         <pointLight position={[10, 10, 5]} />

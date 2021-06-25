@@ -8,11 +8,11 @@ title: Macintosh Mouse
 
 import React, { useRef,useState } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { Physics, useSphere, useBox, usePlane } from 'use-cannon'
 import { Canvas, useThree, useFrame } from "react-three-fiber"
 import { useDrag } from "react-use-gesture"
 import { useSpring } from "@react-spring/core";
 import { a } from "@react-spring/three";
+import { useEffect } from 'react'
 
 // function Paddle({ args = [2, 0.5, 1] }) {
 //   const [ref, api] = useBox(() => ({ args }))
@@ -51,9 +51,15 @@ export default function Model(props) {
     spring: active,
     config: { mass: 5, tension: 400, friction: 50, precision: 0.0001 },
   });
-
+  const [hovered, setHover] = useState(false)
   const posz = spring.to([0, 4], [1, -4]);
+  let keyPressed = useKeyPress("n")
 
+  useEffect(() => {
+    if(keyPressed && hovered) {
+      setActive(Number(!active))
+    }
+  }, [keyPressed, hovered])
 
   return (
     <mesh position={position}  {...bind()}>
@@ -77,6 +83,8 @@ export default function Model(props) {
             >
             <a.mesh
               onClick={() => setActive(Number(!active))}
+              onPointerOver={(e) => setHover(true)}
+              onPointerOut={(e) => setHover(false)}
               position-z={posz}
               geometry={nodes.button_Material001_0.geometry}
               material={nodes.button_Material001_0.material}
@@ -189,3 +197,31 @@ export default function Model(props) {
 }
 
 useGLTF.preload('/mouse.gltf')
+
+function useKeyPress(targetKey) {
+  // State for keeping track of whether key is pressed
+  const [keyPressed, setKeyPressed] = useState(false);
+  // If pressed key is our target key then set to true
+  function downHandler({ key }) {
+    if (key === targetKey) {
+      setKeyPressed(true);
+    }
+  }
+  // If released key is our target key then set to false
+  const upHandler = ({ key }) => {
+    if (key === targetKey) {
+      setKeyPressed(false);
+    }
+  };
+  // Add event listeners
+  useEffect(() => {
+    window.addEventListener("keydown", downHandler);
+    window.addEventListener("keyup", upHandler);
+    // Remove event listeners on cleanup
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+      window.removeEventListener("keyup", upHandler);
+    };
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+  return keyPressed;
+}

@@ -1,12 +1,18 @@
 import { useGLTF, Html } from '@react-three/drei'
 import ReactTerminal from 'react-terminal-component';
 import { Controls, useControl } from 'react-three-gui';
+import {useEffect,useState} from "react" 
 
-export default function Terminal({}) {
+export default function Terminal() {
+  const [terminal, setTerminal] = useState(false);
+  useEffect(() => {
+    setTerminal(true)
+  }, [])
+
   return (
-    <Html position={[0, -7.1, -5.8]} rotation={[-((-Math.PI/2) - 1.97), (Math.PI)/2, 5.885]} transform occlude
+    <Html position={[0, -7.1, -5.8]} rotation={[-((-Math.PI/2) - 1.97), (Math.PI)/2, 5.885]} transform onOcclude={(visible) => {console.log(visible)}}
 >
-  <div >
+    {terminal ? 
     <ReactTerminal  theme={{
   background: 'transparent',
   promptSymbolColor: '#6effe6',
@@ -20,8 +26,7 @@ export default function Terminal({}) {
   border: "20px",
   height: '235px',
   borderRadius: "10px"
-}}/>
-    </div>
+}}/>: null}
     </Html>
   )
 }

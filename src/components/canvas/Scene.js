@@ -10,7 +10,6 @@ import React, { useRef } from 'react'
 import { useGLTF, Html } from '@react-three/drei'
 import Terminal from "./Terminal"
 import { useThree,  } from '@react-three/fiber'
-import { Physics, useSphere, useBox, usePlane } from 'use-cannon'
 
 export default function Model(props) {
   const group = useRef()

@@ -10,8 +10,6 @@ import Model from './Scene'
 import Mouse from './Mouse'
 import Lamp from './Lamp'
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-import * as THREE from 'three';
-
 
 function Controls(props) {
   const ref = useRef()

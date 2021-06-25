@@ -19,10 +19,9 @@ const LCanvas = ({ children }) => {
         position: 'absolute',
         top: 0,
       }}
-      raycaster={{ filter: (intersects, state) => {
-        console.log(intersects)
-        return intersects.reverse()
-      } }}
+      raycaster={(raycaster) => {
+        console.log(raycaster)
+      }}
       gl={{antialias: true}}
       camera={{ position: [0, 5, 12], fov: 50 }}
       onCreated={(state) => state.events.connect(dom.current)}

@@ -1,39 +1,113 @@
 import useStore from '@/helpers/store'
 import { A11y } from '@react-three/a11y'
-import { useFrame } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import { Html, Loader, PerspectiveCamera, Sky, PointerLockControls} from '@react-three/drei'
+import { useResource } from '@react-three/fiber'
+import React, { Suspense, useRef, useState, useEffect } from 'react'
+import { Physics, useSphere, useBox, usePlane } from 'use-cannon'
+import { useThree, useLoader,useFrame } from '@react-three/fiber'
+import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader'
+import Model from './Scene'
+import Mouse from './Mouse'
+import Lamp from './Lamp'
+import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
+import * as THREE from 'three';
+
+
+function Controls(props) {
+  const ref = useRef()
+  const { camera } = useThree()
+  useRender(() => ref.current.obj.update())
+  return <orbitControls ref={ref} args={[camera]} {...props} />
+}
+
+// function Paddle({ args = [2, 0.5, 1] }) {
+//   const [ref, api] = useBox(() => ({ args }))
+
+//   useFrame((state) => {
+//     api.position.set(
+//       (state.mouse.x * state.viewport.width) / 2,
+//       -state.viewport.height / 2,
+//       0
+//     )
+//     api.rotation.set(0, 0, state.mouse.x)
+//   })
+
+//   return (
+//     <mesh ref={ref}>
+//       <boxBufferGeometry args={args} />
+//       <meshStandardMaterial color='lightblue' />
+//     </mesh>
+//   )
+// }
+
+function Enemy({ args = [2, 0.5, 1], color, ...props }) {
+  const collada = useLoader(ColladaLoader, 'temp_export.dae')
+  useEffect(() => {
+
+    collada.castShadow = true
+  }, [])
+
+  return <primitive object={collada} dispose={null} />
+}
+
+
+
 
 const BoxComponent = ({ route }) => {
   const router = useStore((s) => s.router)
   // This reference will give us direct access to the THREE.Mesh object
-  const mesh = useRef()
+	const { camera } = useThree()
+	const ref = useRef()
+  var raycaster = new THREE.Raycaster();
+
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) =>
-    mesh.current
-      ? (mesh.current.rotation.y = mesh.current.rotation.x += 0.01)
-      : null
-  )
+
+  useEffect(() => {
+
+    document.addEventListener("mousedown", downHandler);
+
+  }, [])
+
+  const downHandler = () => {
+    raycaster.setFromCamera([window.innerWidth/2,window.innerHeight/2], camera);
+
+    const intersects = raycaster.intersectObjects(ref.current.children);
+    console.log(intersects)
+    for ( let i = 0; i < intersects.length; i ++ ) {
+
+      intersects[ i ].object.material.color.set( 0xff0000 );
+  
+    }
+  }
+
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <A11y
       role='link'
       href={route}
       actionCall={() => {
-        router.push(route)
+        // router.push(route)
       }}
     >
-      <mesh
-        ref={mesh}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshBasicMaterial
-          color={hovered ? 'hotpink' : route === '/' ? 'darkgrey' : 'orange'}
-        />
-      </mesh>
+      <>
+        {/* <PerspectiveCamera     ref={myCamera}/> */}
+        <EffectComposer>
+          <Vignette eskil={false} offset={0.01} darkness={0.9} />
+        </EffectComposer>
+        <PointerLockControls camera={camera}  makeDefault />
+
+        <ambientLight intensity={0.3} />
+        <pointLight position={[10, 10, 5]} />
+        <pointLight position={[-10, -10, -5]} />
+        <Suspense fallback={null}>
+          <group ref={ref}>
+          <Model position={[-1, 0, 3]} scale={[0.4, 0.4, 0.4]} rotation={[0.1,0.1,0]} />
+          <Mouse position={[4, -1, 2]} scale={[0.0045, 0.0045, 0.0045]} />
+          </group>
+        </Suspense>
+      </>
     </A11y>
   )
 }

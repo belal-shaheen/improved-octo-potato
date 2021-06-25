@@ -1,37 +1,57 @@
+import { useEffect,useState } from "react"
+
 export default function Instructions() {
+  
+  const [mouse, setMouse ] = useState([0,0])
+  const keyPressed = useKeyPress("m")
+
+  useEffect(() => {
+    document.addEventListener("mousemove", (e) => {
+      setMouse([e.pageX, e.pageY]);
+    })
+    document.addEventListener("mousedown", downHandler);
+
+  }, [])
+
+  const downHandler = (e) => {
+    document.elementFromPoint(window.innerWidth/2,window.innerHeight/2).click();
+    document.elementFromPoint(window.innerWidth/2,window.innerHeight/2).focus();
+  }
+
   return (
     <div
-      className='absolute max-w-lg px-4 py-2 shadow-xl top-8 left-1/2 text-gray-50 rounded-xl transform -translate-x-1/2'
-      style={{ backgroundColor: 'rgb(27, 30, 40)' }}
+      className=''
     >
-      <p className='mb-8'>
-        This is a minimal starter for Nextjs + Threejs. A11y is included to
-        provide a basic layer of accessibility. If you click on the cube it will
-        navigate to a dummy `/box` page.
-      </p>
-      <pre>
-        Step 1 - <span style={{ color: 'rgb(84, 90, 114)' }}>update:</span>
-        <bold style={{ color: 'rgb(249, 196, 232)' }}> @/pages/index.tsx </bold>
-        <br />
-        Step 2 - <span style={{ color: 'rgb(84, 90, 114)' }}>update:</span>
-        <bold style={{ color: 'rgb(249, 196, 232)' }}>
-          {' '}
-          @/components/canvas/Box.jsx{' '}
-        </bold>
-        <br />
-        Step 3 - <span style={{ color: 'rgb(84, 90, 114)' }}>delete:</span>
-        <bold style={{ color: 'rgb(249, 196, 232)' }}> @/pages/box.jsx </bold>
-        <br />
-        Step 4 -{' '}
-        <span style={{ color: 'rgb(84, 90, 114)' }}>update header:</span>
-        <bold style={{ color: 'rgb(249, 196, 232)' }}> @/config.js </bold>
-        <br />
-        Step 5 - <span style={{ color: 'rgb(84, 90, 114)' }}>delete:</span>
-        <bold style={{ color: 'rgb(249, 196, 232)' }}>
-          {' '}
-          @/components/dom/instructions.jsx
-        </bold>
-      </pre>
+      <div>{mouse},</div>
+      <div className='cursor' ></div>
     </div>
   )
+}
+
+function useKeyPress(targetKey) {
+  // State for keeping track of whether key is pressed
+  const [keyPressed, setKeyPressed] = useState(false);
+  // If pressed key is our target key then set to true
+  function downHandler({ key }) {
+    if (key === targetKey) {
+      setKeyPressed(true);
+    }
+  }
+  // If released key is our target key then set to false
+  const upHandler = ({ key }) => {
+    if (key === targetKey) {
+      setKeyPressed(false);
+    }
+  };
+  // Add event listeners
+  useEffect(() => {
+    window.addEventListener("keydown", downHandler);
+    window.addEventListener("keyup", upHandler);
+    // Remove event listeners on cleanup
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+      window.removeEventListener("keyup", upHandler);
+    };
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+  return keyPressed;
 }

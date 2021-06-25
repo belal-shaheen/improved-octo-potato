@@ -17,3 +17,15 @@
     overflow: hidden;
   }
 }
+
+.cursor {
+  border: 2px solid black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 30px;
+  height: 30px;
+}

@@ -57,8 +57,6 @@ const BoxComponent = ({ route }) => {
   const router = useStore((s) => s.router)
   // This reference will give us direct access to the THREE.Mesh object
 	const { camera } = useThree()
-	const ref = useRef()
-  var raycaster = new THREE.Raycaster();
 
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
@@ -66,21 +64,11 @@ const BoxComponent = ({ route }) => {
 
   useEffect(() => {
 
-    document.addEventListener("mousedown", downHandler);
+    document.addEventListener("mousedown", () => {});
 
   }, [])
 
-  const downHandler = () => {
-    raycaster.setFromCamera([window.innerWidth/2,window.innerHeight/2], camera);
 
-    const intersects = raycaster.intersectObjects(ref.current.children);
-    console.log(intersects)
-    for ( let i = 0; i < intersects.length; i ++ ) {
-
-      intersects[ i ].object.material.color.set( 0xff0000 );
-  
-    }
-  }
 
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
@@ -102,10 +90,8 @@ const BoxComponent = ({ route }) => {
         <pointLight position={[10, 10, 5]} />
         <pointLight position={[-10, -10, -5]} />
         <Suspense fallback={null}>
-          <group ref={ref}>
           <Model position={[-1, 0, 3]} scale={[0.4, 0.4, 0.4]} rotation={[0.1,0.1,0]} />
           <Mouse position={[4, -1, 2]} scale={[0.0045, 0.0045, 0.0045]} />
-          </group>
         </Suspense>
       </>
     </A11y>

@@ -9,13 +9,6 @@ import Mouse from './Mouse'
 import Lamp from './Lamp'
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
 
-function Controls(props) {
-  const ref = useRef()
-  const { camera } = useThree()
-  useRender(() => ref.current.obj.update())
-  return <orbitControls ref={ref} args={[camera]} {...props} />
-}
-
 // function Paddle({ args = [2, 0.5, 1] }) {
 //   const [ref, api] = useBox(() => ({ args }))
 
@@ -39,19 +32,6 @@ function Controls(props) {
 const BoxComponent = ({ route }) => {
   const router = useStore((s) => s.router)
   // This reference will give us direct access to the THREE.Mesh object
-	const { camera } = useThree()
-
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false)
-  // Subscribe this component to the render-loop, rotate the mesh every frame
-
-  useEffect(() => {
-
-    document.addEventListener("mousedown", () => {});
-
-  }, [])
-
-
 
   // Return the view, these are regular Threejs elements expressed in JSX
   return (

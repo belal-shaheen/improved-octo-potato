@@ -55,12 +55,6 @@ export default function Model(props) {
   const posz = spring.to([0, 4], [1, -4]);
   let keyPressed = useKeyPress("n")
 
-  useEffect(() => {
-    if(keyPressed && hovered) {
-      setActive(Number(!active))
-    }
-  }, [keyPressed, hovered])
-
   return (
     <mesh position={position}  {...bind()}>
     <group ref={group} {...props} dispose={null}>

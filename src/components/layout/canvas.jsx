@@ -19,7 +19,7 @@ const LCanvas = ({ children }) => {
       //     offsetY: window.innerHeight / 2, // <-- These are hard to maintain outside of the canvas context with useThree()
       //   }),
       // }}
-      gl={{antialias: true}}
+      // gl={{antialias: true}}
       camera={{ position: [0, 5, 12], fov: 50 }}
       onCreated={(state) => state.events.connect(dom.current)}
     >

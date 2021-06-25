@@ -3,31 +3,10 @@ import { A11y } from '@react-three/a11y'
 import { Html, Loader, PerspectiveCamera, Sky, PointerLockControls} from '@react-three/drei'
 import { useResource } from '@react-three/fiber'
 import React, { Suspense, useRef, useState, useEffect } from 'react'
-import { useThree, useLoader,useFrame } from '@react-three/fiber'
 import Model from './Scene'
 import Mouse from './Mouse'
 import Lamp from './Lamp'
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-
-// function Paddle({ args = [2, 0.5, 1] }) {
-//   const [ref, api] = useBox(() => ({ args }))
-
-//   useFrame((state) => {
-//     api.position.set(
-//       (state.mouse.x * state.viewport.width) / 2,
-//       -state.viewport.height / 2,
-//       0
-//     )
-//     api.rotation.set(0, 0, state.mouse.x)
-//   })
-
-//   return (
-//     <mesh ref={ref}>
-//       <boxBufferGeometry args={args} />
-//       <meshStandardMaterial color='lightblue' />
-//     </mesh>
-//   )
-// }
 
 const BoxComponent = ({ route }) => {
   const router = useStore((s) => s.router)

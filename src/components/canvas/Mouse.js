@@ -8,7 +8,7 @@ title: Macintosh Mouse
 
 import React, { useRef,useState } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { Canvas, useThree, useFrame } from "react-three-fiber"
+import { Canvas, useThree, useFrame } from "@react-three/fiber"
 import { useDrag } from "react-use-gesture"
 import { useSpring } from "@react-spring/core";
 import { a } from "@react-spring/three";

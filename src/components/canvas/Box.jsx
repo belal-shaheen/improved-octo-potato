@@ -4,7 +4,6 @@ import { Html, Loader, PerspectiveCamera, Sky, PointerLockControls} from '@react
 import { useResource } from '@react-three/fiber'
 import React, { Suspense, useRef, useState, useEffect } from 'react'
 import { useThree, useLoader,useFrame } from '@react-three/fiber'
-import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader'
 import Model from './Scene'
 import Mouse from './Mouse'
 import Lamp from './Lamp'
@@ -36,19 +35,6 @@ function Controls(props) {
 //     </mesh>
 //   )
 // }
-
-function Enemy({ args = [2, 0.5, 1], color, ...props }) {
-  const collada = useLoader(ColladaLoader, 'temp_export.dae')
-  useEffect(() => {
-
-    collada.castShadow = true
-  }, [])
-
-  return <primitive object={collada} dispose={null} />
-}
-
-
-
 
 const BoxComponent = ({ route }) => {
   const router = useStore((s) => s.router)

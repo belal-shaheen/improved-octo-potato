@@ -13,7 +13,7 @@ export default function Terminal() {
   }, [terminal])
 
   return (
-    <Html position={[0, -7.35, -5.8]} rotation={[-((-Math.PI/2) - 1.97), (Math.PI)/2, 5.885]} transform onOcclude={(visible) => {console.log(visible)}}
+    <Html position={[0.1, -7.25, -5.8]} rotation={[-((-Math.PI/2) - 1.97), (Math.PI)/2, 5.885]} transform onOcclude={(visible) => {console.log(visible)}}
 >
     {terminal ? 
     <ReactTerminal  theme={{

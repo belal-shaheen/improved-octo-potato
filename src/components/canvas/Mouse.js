@@ -77,8 +77,6 @@ export default function Model(props) {
             >
             <a.mesh
               onClick={() => setActive(Number(!active))}
-              onPointerOver={(e) => setHover(true)}
-              onPointerOut={(e) => setHover(false)}
               position-z={posz}
               geometry={nodes.button_Material001_0.geometry}
               material={nodes.button_Material001_0.material}

@@ -13,6 +13,8 @@ const LCanvas = ({ children }) => {
         position: 'absolute',
         top: 0,
       }}
+      shadowMap 
+      sRGB
       // raycaster={{
       //   computeOffsets: () => ({
       //     offsetX: window.innerWidth / 2,  // <-- `width` and `height` are tricky here! 
@@ -32,7 +34,7 @@ const LCanvas = ({ children }) => {
     >
       <A11yUserPreferences>
         <Preload all />
-        <color attach="background" args={["#FFFFF"]} />
+        <color attach="background" args={["#050505"]} />
         {children}
       </A11yUserPreferences>
     </Canvas>

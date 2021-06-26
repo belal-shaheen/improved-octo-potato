@@ -3202,7 +3202,7 @@ export default function Model(props) {
           rotation={[0.12, 0, Math.PI]}
           scale={[0.1, 0.1, 0.1]}
         >
-          <group position={[55.76, 10.69, 5]}>
+          <group className="6" position={[55.76, 10.69, 5]}>
             <lineSegments
               geometry={nodes.Material3_347.geometry}
               material={nodes.Material3_347.material}
@@ -3212,7 +3212,7 @@ export default function Model(props) {
               material={nodes.Material2_575.material}
             />
           </group>
-          <group position={[98.94, 11.82, 5.35]}>
+          <group  position={[98.94, 11.82, 5.35]}>
             <lineSegments
               geometry={nodes.Material3_348.geometry}
               material={nodes.Material3_348.material}

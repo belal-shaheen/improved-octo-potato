@@ -8,17 +8,13 @@ import Mouse from './Mouse'
 import Boxes from './Boxes'
 import Desk from './Desk'
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette,  } from '@react-three/postprocessing'
-import { Physics } from 'use-cannon'
 import lerp from "lerp"
-
-
 
 const HPI = Math.PI / 2
 
 function MainSphere({ material }) {
   const main = useRef();
   const Three = useThree()
-  console.log(Three)
   // main sphere rotates following the mouse position
   useFrame(({ clock, mouse }) => {
     main.current.rotation.z = clock.getElapsedTime();
@@ -148,7 +144,6 @@ const BoxComponent = ({ route, cameraSetting, useCameraSetting }) => {
 
 
         <Suspense fallback={<Html center>Loading.</Html>}>
-          <Physics>
             <Environment preset="night" />
             <Scene2 />
             <ContactShadows rotation-x={Math.PI / 2} position={[0, -14, 0]} opacity={0.4} width={200} height={200} blur={2} far={60.5} />
@@ -156,7 +151,6 @@ const BoxComponent = ({ route, cameraSetting, useCameraSetting }) => {
             <Model position={[-1, 0, 3]} scale={[0.4, 0.4, 0.4]} rotation={[0.0,0.1,0]} />
             <Mouse position={[4, -1, 2]} scale={[0.0045, 0.0045, 0.0045]} />
             {/* <Boxes/> */}
-          </Physics>
         </Suspense>
 
         <Text curveRadius={0.2} scale={[70,20,20]} rotation={[0,Math.PI,0]} position={[-3,5, 35]} color="grey" anchorX="center" anchorY="middle">

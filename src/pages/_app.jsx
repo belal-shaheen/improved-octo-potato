@@ -4,6 +4,7 @@ import { useEffect, Children, Component } from 'react'
 import Header from '@/config'
 import dynamic from 'next/dynamic'
 import Dom from '@/components/layout/dom'
+import { RecoilRoot } from "recoil";
 
 import '@/styles/index.css'
 
@@ -35,8 +36,8 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
 
     return (
       <>
-        {compArr && <Layout dom={compArr} />}
-        {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
+          {compArr && <Layout dom={compArr} />}
+          {r3fArr && <LCanvas>{r3fArr}</LCanvas>}
       </>
     )
   } catch (error) {
@@ -44,6 +45,7 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
     return <comp {...pageProps} />
   }
 }
+
 
 function App({ Component, pageProps = {} }) {
   const router = useRouter()

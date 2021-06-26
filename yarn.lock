@@ -3729,6 +3729,11 @@
   dependencies:
     "duplexer" "^0.1.2"
 
+"hamt_plus@1.0.2":
+  "integrity" "sha1-4hwlKWjH4zsg9qGwlM2FeHomVgE="
+  "resolved" "https://registry.npmjs.org/hamt_plus/-/hamt_plus-1.0.2.tgz"
+  "version" "1.0.2"
+
 "has-bigints@^1.0.1":
   "integrity" "sha512-LSBS2LjbNBTf6287JEbEzvJgftkF5qFkmCo9hDRpAzKhUOlJ+hx8dd4USs00SgsUNwc4617J9ki5YtEClM2ffA=="
   "resolved" "https://registry.npmjs.org/has-bigints/-/has-bigints-1.0.1.tgz"
@@ -5609,7 +5614,7 @@
   dependencies:
     "debounce" "^1.2.0"
 
-"react@*", "react@^15.0.0 || ^16.0.0", "react@^16.8.0  || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@^18.0.0-alpha-dbe3363cc", "react@>= 16.8.0", "react@>=16", "react@>=16.11", "react@>=16.13", "react@>=16.8", "react@>=17.0", "react@15.x.x || 16.x.x || 17.x.x", "react@17.0.2":
+"react@*", "react@^15.0.0 || ^16.0.0", "react@^16.8.0  || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@^18.0.0-alpha-dbe3363cc", "react@>= 16.8.0", "react@>=16", "react@>=16.11", "react@>=16.13", "react@>=16.13.1", "react@>=16.8", "react@>=17.0", "react@15.x.x || 16.x.x || 17.x.x", "react@17.0.2":
   "integrity" "sha512-cD3kqqDXB6iMtD8oYjz5J42FLzt31bm8Ygv4cwbtNsfOfX2Bcr6/0LiYRPNOl1d+1HeSACFdAJY2fMMqkhjSwg=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.0.0-alpha-dbe3363cc.tgz"
   "version" "18.0.0-alpha-dbe3363cc"
@@ -5704,6 +5709,13 @@
   "version" "3.6.0"
   dependencies:
     "picomatch" "^2.2.1"
+
+"recoil@^0.3.1":
+  "integrity" "sha512-KNA3DRqgxX4rRC8E7fc6uIw7BACmMPuraIYy+ejhE8tsw7w32CetMm8w7AMZa34wzanKKkev3vl3H7Z4s0QSiA=="
+  "resolved" "https://registry.npmjs.org/recoil/-/recoil-0.3.1.tgz"
+  "version" "0.3.1"
+  dependencies:
+    "hamt_plus" "1.0.2"
 
 "reduce-css-calc@^2.1.8":
   "integrity" "sha512-8liAVezDmUcH+tdzoEGrhfbGcP7nOV4NkGE3a74+qqvE7nt9i4sKLGBuZNOnpI4WiGksiNPklZxva80061QiPg=="

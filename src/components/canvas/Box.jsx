@@ -9,22 +9,25 @@ import Boxes from './Boxes'
 import Desk from './Desk'
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette,  } from '@react-three/postprocessing'
 import { Physics } from 'use-cannon'
-import * as THREE from "three";
+import lerp from "lerp"
+
+
 
 const HPI = Math.PI / 2
 
 function MainSphere({ material }) {
   const main = useRef();
-
+  const Three = useThree()
+  console.log(Three)
   // main sphere rotates following the mouse position
   useFrame(({ clock, mouse }) => {
     main.current.rotation.z = clock.getElapsedTime();
-    main.current.rotation.y = THREE.MathUtils.lerp(
+    main.current.rotation.y = lerp(
       main.current.rotation.y,
       mouse.x * Math.PI,
       0.1
     );
-    main.current.rotation.x = THREE.MathUtils.lerp(
+    main.current.rotation.x = lerp(
       main.current.rotation.x,
       mouse.y * Math.PI,
       0.1

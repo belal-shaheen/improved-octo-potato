@@ -24,6 +24,7 @@
     "@react-three/fiber": "^7.0.1",
     "@react-three/postprocessing": "*",
     "javascript-terminal": "^1.1.1",
+    "lerp": "^1.0.3",
     "next": "^11.0.0",
     "react": "^18.0.0-alpha-dbe3363cc",
     "react-animated-cursor": "^2.2.0",

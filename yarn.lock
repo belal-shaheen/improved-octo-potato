@@ -4470,6 +4470,11 @@
   "resolved" "https://registry.npmjs.org/lazy-cache/-/lazy-cache-1.0.4.tgz"
   "version" "1.0.4"
 
+"lerp@^1.0.3":
+  "integrity" "sha1-oYyJaPkXiW3hXM/MKNVaa3Med24="
+  "resolved" "https://registry.npmjs.org/lerp/-/lerp-1.0.3.tgz"
+  "version" "1.0.3"
+
 "levn@^0.3.0", "levn@~0.3.0":
   "integrity" "sha1-OwmSTt+fCDwEkP3UwLxEIeBHZO4="
   "resolved" "https://registry.npmjs.org/levn/-/levn-0.3.0.tgz"
